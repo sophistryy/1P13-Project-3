@@ -6,7 +6,6 @@
     <body>
         <p>hello world</p>
         <ul>
-            <!-- {% everything in these brackets is python code; look up specific syntax %} -->
             {% for e in a %}
                 <li>{{ e }}</li>
             {% endfor %}
@@ -19,5 +18,9 @@
         {% block content %}
             Hello world!!!
         {% endblock %}
+
+        <a href="/2">Link</a>
+
+        <input type="file">
     </body>
 </html>
