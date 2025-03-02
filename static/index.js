@@ -1,10 +1,12 @@
-// defining variables
-let a = 5; 
-b = 1
+window.addEventListener("load", async () => {
+    const response = await fetch("/get_json");
+    const data = await response.json();
+    const listElem = document.createElement("ul");
+    document.body.appendChild(listElem);
 
-// def func() equivalent in JS
-function test() {
-    
-}
-
-// two types of equal; == vs === ; use the === (python "==" equivalent)
+    for (const note of data.notes) {
+        const noteElem = document.createElement("li");
+        listElem.appendChild(noteElem);
+        noteElem.innerText = note;
+    }
+});
