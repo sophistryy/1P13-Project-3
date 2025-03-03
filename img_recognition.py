@@ -124,12 +124,11 @@ def main():
 	for i in range(len(note_groupings)):
 		for n in range(len(note_groupings[i])):
 			note = note_groupings[i][n]
-			# note_y = sorted(note_groupings[i], key=lambda n: n[1])
-			prev_note = note_groupings[i][n - 1]
+			note_y = sorted(note_groupings[i], key=lambda n: n[1])
+			prev_note = note_y[n - 1]
 			current_staff = staff[i]
 			note_index = 0
-			
-			# 15-20, 2 notes | 12-14, single notes
+# 15-20, 2 notes | 12-14, single notes
 
 			for l in range(len(current_staff)):
 				line = current_staff[l]
@@ -153,7 +152,7 @@ def main():
 				note.append([notes[note_index]])
 					
 			elif note[2] >= 15:
-				if abs(note[0] - prev_note[0]) < 50: #double notes (15-20)
+				if abs(note_y[i][0] - prev_note[0]) < 20: #double notes (15-20)
 					note.append([notes[note_index - 1], notes[note_index + 1]])
 				else:
 					note.append([notes[note_index], notes[note_index + 1]])
