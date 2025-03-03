@@ -35,17 +35,6 @@ def get_json():
         # "notes": [[["C4"],["C5", "A4","B5"],["F5"]], [["C4"],["C5", "A4","B5"],["F5"]]]
     }
 
-@app.route("/get_json")
-def get_json():
-    my_file = request.files["adasd"]
-    my_file.save("temp.png")
-
-    notes = main("temp.png")
-
-    return {
-        "notes": [[["C4"],["C5", "A4","B5"],["F5"]], [["C4"],["C5", "A4","B5"],["F5"]]]
-    }
-
 # just an ending thing 
 if __name__ == "__main__":
     app.run(debug=True)
