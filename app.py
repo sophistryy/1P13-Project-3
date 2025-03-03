@@ -21,7 +21,19 @@ def secondpage():
 
 @app.route("/3")
 def thirdpage():
-    return render_template("filename.html")
+    return render_template("filename.html") 
+
+@app.route("/get_json")
+def get_json():
+    # my_file = request.files["adasd"]
+    # my_file.save("temp.png")
+
+    # notes = main("temp.png")
+
+    return {
+        "notes": main()
+        # "notes": [[["C4"],["C5", "A4","B5"],["F5"]], [["C4"],["C5", "A4","B5"],["F5"]]]
+    }
 
 @app.route("/get_json")
 def get_json():

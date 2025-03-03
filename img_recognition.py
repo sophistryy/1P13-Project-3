@@ -128,8 +128,7 @@ def main():
 			prev_note = note_y[n - 1]
 			current_staff = staff[i]
 			note_index = 0
-
-			# 15-20, 2 notes | 12-14, single notes
+# 15-20, 2 notes | 12-14, single notes
 
 			for l in range(len(current_staff)):
 				line = current_staff[l]
@@ -169,11 +168,10 @@ def main():
 		for note in line:
 			x = note[0]
 			y = note[1]
-			inc = 20
+			inc = 15
 			h = 0
 			for i in range(len(note[-1])):
 				cv2.putText(im_with_keypoints, str(note[-1][i]), (x + inc, y + h), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 1, cv2.LINE_AA)
-				# inc += 15
 				h += 12
 
 	# plt.imshow(im_with_keypoints)
