@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from img_recognition import main
+from image_recognition.img_recognition import main
 
 app = Flask(__name__)
 

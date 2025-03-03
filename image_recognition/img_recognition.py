@@ -7,7 +7,7 @@ from PIL import Image
 def main():
 	# resizing image
 	base_width = 1400
-	og_img = Image.open("ir_tests\\score.jpg")
+	og_img = Image.open("image_recognition\\ir_tests\\score.jpg")
 	wpercent = (base_width / float(og_img.size[0]))
 	hsize = int((float(og_img.size[1]) * float(wpercent)))
 	resized_img = og_img.resize((base_width, hsize), Image.Resampling.LANCZOS)
@@ -101,6 +101,7 @@ def main():
 
 		note_data.append([x,y,s])
 
+	# sorting by x-coordinate
 	note_data = sorted(note_data, key=lambda n: n[0])
 
 	# grouping notes into lines
@@ -206,7 +207,7 @@ def main():
 						chord.append(n[-1][i])
 				chord_notes.append(chord)
 		note_letters.append(chord_notes)
-	
+
 	return note_letters
 
 if __name__ == "__main__":
