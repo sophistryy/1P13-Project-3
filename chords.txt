@@ -50,7 +50,7 @@ seventh", which is root-b3-b5-bb7 (yes, double-flatted seventh).
 So Cdim = Cdim7 = C-Eb-Gb-Bbb = C-Eb-Gb-A.
 Cdim7 is often notated as "C-followed-by-a-raised-circle".
 
-A related chord, the half-diminished (also called "minor seventh/flat
+A related chord, the half-diminished (also called "minor seventh/flat)
 fifth", replaces the double-flatted seventh with a flatted seventh;
 thus, Cm7-5 (or Cm7b5) = C-Eb-Gb-Bb.  Cm7-5 is often notated as
 "C-followed-by-a-raised- circle-with-a-diagonal-slash-through-it".
