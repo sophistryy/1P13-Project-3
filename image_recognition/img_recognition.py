@@ -7,7 +7,7 @@ from PIL import Image
 def main():
 	# resizing image
 	base_width = 1400
-	og_img = Image.open("ir_tests\\score.jpg")
+	og_img = Image.open("image_recognition\\ir_tests\\score.jpg")
 	wpercent = (base_width / float(og_img.size[0]))
 	hsize = int((float(og_img.size[1]) * float(wpercent)))
 	resized_img = og_img.resize((base_width, hsize), Image.Resampling.LANCZOS)
@@ -101,6 +101,7 @@ def main():
 
 		note_data.append([x,y,s])
 
+	# sorting by x-coordinate
 	note_data = sorted(note_data, key=lambda n: n[0])
 
 	# grouping notes into lines
@@ -121,70 +122,91 @@ def main():
 	# average height between each note
 	distance = ((staff[0][-1][1] - staff[0][0][1])/9)
 	
+	note_chords = []
 	for i in range(len(note_groupings)):
-		for n in range(len(note_groupings[i])):
+		staff_line = [ [note_groupings[i][0]] ]	
+		for n in range(1, len(note_groupings[i])):
 			note = note_groupings[i][n]
-			note_y = sorted(note_groupings[i], key=lambda n: n[1])
-			prev_note = note_y[n - 1]
-			current_staff = staff[i]
-			note_index = 0
+			prev_note = note_groupings[i][n - 1]
 
-			# 15-20, 2 notes | 12-14, single notes
+			if abs(note[0] - prev_note[0]) < 20:
+				staff_line[-1].append(note)
+			else:
+				staff_line.append([note])
+		note_chords.append(staff_line)
+								
+	# note_chords = [staff][chords][note][x, y, s]
 
-			for l in range(len(current_staff)):
-				line = current_staff[l]
-				line_note_index = 10 - 2 * l
+	for i in range(len(note_chords)):	
+		for c in range(len(note_chords[i])):
+			note_chords[i][c] = sorted(note_chords[i][c], key=lambda n: n[1]) # sorted by y value
+			 
+			for n in range(len(note_chords[i][c])):
+				note = note_chords[i][c][n]
+				prev_note = note_chords[i][c][n - 1]
+				current_staff = staff[i]
+				note_index = 0
 
-				if abs(note[1] - line[1]) < distance / 3:
-					note_index = line_note_index
+				# 15-20, 2 notes | 12-14, single notes
+				for l in range(len(current_staff)):
+					line = current_staff[l]
+					line_note_index = 10 - 2 * l
 
-				elif 0 < note[1] - line[1] < distance * 2:
-					note_index = line_note_index - 1
+					if abs(note[1] - line[1]) < distance / 3:
+						note_index = line_note_index
 
-				elif l == 0 and note[1] < line[1]:
-					dist_from_top = line[1] - note[1]
-					note_index = line_note_index + round(dist_from_top / distance - 0.6)
-					
-				elif l == 4 and note[1] > line[1]:
-					dist_from_bottom = note[1] - line[1]
-					note_index = line_note_index - round(dist_from_bottom / distance)
+					elif 0 < note[1] - line[1] < distance * 2:
+						note_index = line_note_index - 1
 
-			if note[2] <= 14: # single note (12-14)
-				note.append([notes[note_index]])
-					
-			elif note[2] >= 15:
-				if abs(note_y[i][0] - prev_note[0]) < 20: #double notes (15-20)
-					note.append([notes[note_index - 1], notes[note_index + 1]])
-				else:
-					note.append([notes[note_index], notes[note_index + 1]])
+					elif l == 0 and note[1] < line[1]:
+						dist_from_top = line[1] - note[1]
+						note_index = line_note_index + round(dist_from_top / distance - 0.6)
+						
+					elif l == 4 and note[1] > line[1]:
+						dist_from_bottom = note[1] - line[1]
+						note_index = line_note_index - round(dist_from_bottom / distance)
 
-			# cv2.putText(im_with_keypoints, str(notes[note_index]), (note[0] + 20, note[1]), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 1, cv2.LINE_AA)
-			# cv2.putText(im_with_keypoints, str(note[2]), (note[0] + 20, note[1]), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 1, cv2.LINE_AA)
-			cv2.circle(im_with_keypoints, (note[0], note[1]), 3, (255, 0, 0), 1, cv2.LINE_AA)
+				if note[2] <= 14: # single note (12-14)
+					note.append([notes[note_index]])
+						
+				elif note[2] >= 15:
+					if abs(note[0] - prev_note[0]) < 100: #double notes (15-20)
+						note.append([notes[note_index - 1], notes[note_index + 1]])
+					else:
+						note.append([notes[note_index], notes[note_index + 1]])
+				
+				text = str(note[0]) + ", " + str(prev_note[0])
 
-			# note.append(notes[note_index])
-	# print(note_groupings[0])
-
+				# cv2.putText(im_with_keypoints, str(notes[note_index]), (note[0] + 20, note[1]), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 1, cv2.LINE_AA)
+				# cv2.putText(im_with_keypoints, str(note[2]), (note[0] + 20, note[1]), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 1, cv2.LINE_AA)
+				cv2.putText(im_with_keypoints, text, (note[0] - 20, note[1] - 50), cv2.FONT_HERSHEY_SIMPLEX, 0.3, (255, 0, 0), 1, cv2.LINE_AA)
+				cv2.circle(im_with_keypoints, (note[0], note[1]), 3, (255, 0, 0), 1, cv2.LINE_AA)
+		
 	for line in note_groupings:
 		for note in line:
 			x = note[0]
 			y = note[1]
-			inc = 20
+			inc = 15
 			h = 0
 			for i in range(len(note[-1])):
 				cv2.putText(im_with_keypoints, str(note[-1][i]), (x + inc, y + h), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 1, cv2.LINE_AA)
-				# inc += 15
 				h += 12
 
 	# plt.imshow(im_with_keypoints)
 	# plt.show()
 
+	# reading note_chord and sorting notes only into chords for each line
 	note_letters = []
-	for e in note_groupings:
-		group = []
-		for n in range(len(e)):
-			group.append(e[n][-1])
-		note_letters.append(group)
+	for line in note_chords:
+		for chord in line:
+			chord_notes = []
+			for note in line:
+				chord = []
+				for n in note:
+					for i in range(len(n[-1])):
+						chord.append(n[-1][i])
+				chord_notes.append(chord)
+		note_letters.append(chord_notes)
 
 	return note_letters
 

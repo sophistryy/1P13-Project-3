@@ -1,23 +1,10 @@
 <!DOCTYPE html> <!-- put that in for everything, just smth you do lmao; gets rid of the quirk ! -->
 <html>
     <head>
-        <script src="{{ url_for('static', filename='index.js') }}"></script>
+        <script src="{{ url_for('static', filename='base.js') }}"></script>
+        <link rel="stylesheet" href="base.css">
     </head>
     <body>
-        <p>hello world</p>
-        <ul>
-            {% for e in a %}
-                <li>{{ e }}</li>
-            {% endfor %}
-        </ul>
-        {% if test %}
-            <p>Hello world!!!</p>
-        {% endif %}
-
-        <!-- this connect to secondpage.html; everything in there goes in this block -->
-        {% block content %}
-            Hello world!!!
-        {% endblock %}
 
         <a href="/2">Link</a>
 
