@@ -1,26 +1,18 @@
-<!DOCTYPE html> <!-- put that in for everything, just smth you do lmao; gets rid of the quirk ! -->
+<!doctype html>
 <html>
-    <head>
-        <script src="{{ url_for('static', filename='index.js') }}"></script>
-    </head>
-    <body>
-        <p>hello world</p>
-        <ul>
-            {% for e in a %}
-                <li>{{ e }}</li>
-            {% endfor %}
-        </ul>
-        {% if test %}
-            <p>Hello world!!!</p>
-        {% endif %}
 
-        <!-- this connect to secondpage.html; everything in there goes in this block -->
-        {% block content %}
-            Hello world!!!
-        {% endblock %}
+<head>
 
-        <a href="/2">Link</a>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon-15 Website - Song Library</title>
+    <link rel="stylesheet" href="song_library.css">
 
-        <input type="file">
-    </body>
+</head>
+
+<body>
+    <h2 class="title">Songs</h2>
+    <div class="box">Song #1</div>
+
+</body>
 </html>

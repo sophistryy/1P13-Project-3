@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from img_recognition import main
+from image_recognition.img_recognition import main
 
 app = Flask(__name__)
 
@@ -21,17 +21,18 @@ def secondpage():
 
 @app.route("/3")
 def thirdpage():
-    return render_template("filename.html")
+    return render_template("filename.html") 
 
 @app.route("/get_json")
 def get_json():
-    my_file = request.files["adasd"]
-    my_file.save("temp.png")
+    # my_file = request.files["adasd"]
+    # my_file.save("temp.png")
 
-    notes = main("temp.png")
+    # notes = main("temp.png")
 
     return {
-        "notes": [[["C4"],["C5", "A4","B5"],["F5"]], [["C4"],["C5", "A4","B5"],["F5"]]]
+        "notes": main()
+        # "notes": [[["C4"],["C5", "A4","B5"],["F5"]], [["C4"],["C5", "A4","B5"],["F5"]]]
     }
 
 # just an ending thing 
