@@ -91,7 +91,7 @@ def line_detector(image):
 	rho = 1  # distance resolution in pixels of the Hough grid
 	theta = np.pi / 180  # angular resolution in radians of the Hough grid
 	threshold = 15  # minimum number of votes (intersections in Hough grid cell)
-	min_line_length = 300  # minimum number of pixels making up a line
+	min_line_length = 310  # minimum number of pixels making up a line
 	max_line_gap = 20 # maximum gap in pixels between connectable line segments
 	line_image = np.copy(image)  # creating a blank to draw lines on
 
@@ -105,8 +105,14 @@ def line_detector(image):
 	# getting rid of extra lines if they are too close to each other
 	unduplicated_lines = [ lines[0] ]
 	for i in range(1, len(lines)):
+		# if abs((line[i][0][2]-line[i][0][3])/(line[i][0][0]-line[i][0])):
+		# 	pass
 		if abs(lines[i][0][1] - unduplicated_lines[-1][0][1]) > 5:
 			unduplicated_lines.append(lines[i])
+
+	# for line in unduplicated_lines:
+	# 	for x1, y1, x2, y2 in line:
+	# 		cv2.line(line_image,(x1, y1),(x2, y2),(255,0,0),1)
 	
 	# grouping line into sections (staff or tab groups)
 	line_groupings = [ [ unduplicated_lines[0] ] ]
@@ -151,9 +157,9 @@ def line_detector(image):
 	for group in staff:
 		for line in group:
 			cv2.line(line_image,(line[0], line[1]),(line[2], line[3]),(255,0,0),1)
-	
-	plt.imshow(line_image)
-	plt.show()
+
+	# plt.imshow(line_image)
+	# plt.show()
 	
 	return staff
 

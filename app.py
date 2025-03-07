@@ -60,8 +60,10 @@ def get_json():
     #     db.session.add(music_obj)
     #     db.session.commit()
 
+    image = "image_recognition\\ir_tests\\blues.jpg"
+
     return {
-        "notes": main()
+        "notes": main(image)
     }
 
 @app.route("/register", methods=["GET", "POST"])
