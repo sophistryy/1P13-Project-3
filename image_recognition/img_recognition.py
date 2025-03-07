@@ -3,9 +3,9 @@ from matplotlib import pyplot as plt
 import numpy as np
 import math
 from PIL import Image
-from pre_processing import resize, blob_detector, line_detector
+from image_recognition.pre_processing import resize, blob_detector, line_detector
 
-sheet = "image_recognition\\ir_tests\\blues.jpg"
+sheet = "image_recognition\\ir_tests\\HC.png"
 
 def main(image):
 	img = resize(image)
@@ -111,7 +111,7 @@ def main(image):
 						chord.append(n[-1][i])
 				chord_notes.append(chord)
 		note_letters.append(chord_notes)
-
+	
 	return note_letters
 
 if __name__ == "__main__":
