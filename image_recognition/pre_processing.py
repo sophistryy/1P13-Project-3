@@ -163,6 +163,9 @@ def line_detector(image):
 	
 	return staff
 
+def accidentals():
+	
+
 if __name__ == "__main__":
 	blob_detector(resize(img))
 	line_detector(resize(img))
