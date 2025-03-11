@@ -10,8 +10,15 @@
 
 <body>
     <h2 class="title">Song #1</h2>
-    <input type="text" id="DisplayTextbox" value="" readonly>
-    <button id="playAgainBtn" style="display: none;" onclick="startLoop()">Play Again</button>
+    <div id="DisplayTextbox"> </div>
+    <div id="AfterTextbox"></div>
+    <div id="tempoTextbox"> </div>   
+    <button id="playBtn" onclick="startLoop()">Play</button>
+    <button id="slowDownBtn" onclick="increaseDelay()">Slow Down</button>
+    <button id="speedUpBtn" onclick="decreaseDelay()">Speed Up</button>
+    <button id="pauseBtn" style="display: none" onclick="pauseLoop()">Pause</button>
+    <button id="continueBtn" style="display:none" onclick="continueLoop()">Continue</button>
+    <button id="resetBtn" style="display:none" onclick="resetPage()">Reset</button>
     <a href="/3">Exit</a>
     <script src="../static/display.js"></script>
 
