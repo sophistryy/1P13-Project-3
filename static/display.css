@@ -1,0 +1,4 @@
+DisplayTextbox{
+    border: none;
+    outline: none; /* Optional: Removes the focus border */
+}

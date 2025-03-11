@@ -39,11 +39,11 @@ def main_page():
 @app.route("/2")
 # this would be from 127.0.0.1:5000/2 instead of just the "/"
 def secondpage():
-    return render_template("secondpage.html")
+    return render_template("display.html")
 
 @app.route("/3")
 def thirdpage():
-    return render_template("filename.html") 
+    return render_template("index.html") 
 
 @app.route("/get_json")
 def get_json():
@@ -60,8 +60,10 @@ def get_json():
     #     db.session.add(music_obj)
     #     db.session.commit()
 
+    image = "image_recognition\\ir_tests\\blues.jpg"
+
     return {
-        "notes": main()
+        "notes": main(image)
     }
 
 @app.route("/register", methods=["GET", "POST"])
