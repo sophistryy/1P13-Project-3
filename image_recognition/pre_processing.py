@@ -2,8 +2,10 @@ import cv2
 from matplotlib import pyplot as plt
 import numpy as np
 from PIL import Image
+from PIL import Image
+import pytesseract
 
-img = "image_recognition\\ir_tests\\Asturias.png"
+img = "image_recognition\\ir_tests\\wave.png"
 
 def resize(image):
 	"""resizes image"""
@@ -105,15 +107,15 @@ def line_detector(image):
 	# getting rid of extra lines if they are too close to each other
 	unduplicated_lines = [ lines[0] ]
 	for i in range(1, len(lines)):
-		# if abs((line[i][0][2]-line[i][0][3])/(line[i][0][0]-line[i][0])):
-		# 	pass
-		if abs(lines[i][0][1] - unduplicated_lines[-1][0][1]) > 5:
+		if abs(lines[i][0][1] - lines[i][0][3]) > 20:
+			continue
+		if abs(lines[i][0][1] - unduplicated_lines[-1][0][1]) > 10:
 			unduplicated_lines.append(lines[i])
 
-	# for line in unduplicated_lines:
-	# 	for x1, y1, x2, y2 in line:
-	# 		cv2.line(line_image,(x1, y1),(x2, y2),(255,0,0),1)
-	
+	for line in unduplicated_lines:
+		for x1, y1, x2, y2 in line:
+			cv2.line(line_image,(x1, y1),(x2, y2),(255,0,0),1)
+
 	# grouping line into sections (staff or tab groups)
 	line_groupings = [ [ unduplicated_lines[0] ] ]
 	for i in range(1, len(unduplicated_lines)):
@@ -163,8 +165,8 @@ def line_detector(image):
 	
 	return staff
 
-def accidentals():
-	
+# def accidentals():
+
 
 if __name__ == "__main__":
 	blob_detector(resize(img))

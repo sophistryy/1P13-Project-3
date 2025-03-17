@@ -2,7 +2,10 @@ from flask import Flask, redirect, render_template, request
 from flask_login import login_user, current_user, LoginManager, logout_user
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
+
 from image_recognition.img_recognition import main
+from chord_reader.chord_reader import chord_reader
+
 from models import db, User, SavedMusic
 import json
 
@@ -36,12 +39,12 @@ def main_page():
     # converts jinja page to html, passing variable into jinja (jinja just contains the python code within html
     # a=a is passing the variable into the html, while test=True is for the "Hello world !!" to show if test=True
 
-@app.route("/2")
+@app.route("/display")
 # this would be from 127.0.0.1:5000/2 instead of just the "/"
 def secondpage():
     return render_template("display.html")
 
-@app.route("/3")
+@app.route("/home")
 def thirdpage():
     return render_template("index.html") 
 
@@ -61,6 +64,11 @@ def get_json():
     #     db.session.commit()
 
     image = "image_recognition\\ir_tests\\blues.jpg"
+
+    try:
+        notes = main(image)
+    except:
+        print ("Unable to detect sheet music")
 
     return {
         "notes": main(image)
