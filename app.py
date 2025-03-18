@@ -32,7 +32,7 @@ bcrypt.init_app(app)
 # "/" = home page; runs main at home page (in the broswer url, it's what comes after it)
 # eg. 127.0.0.1:5000/ (this is main)
 
-def main_page():
+def base():
     a = [1, 3, "h", 4] # printing out an example list
     
     return render_template("base.html", a=a, test=True)
@@ -40,38 +40,36 @@ def main_page():
     # a=a is passing the variable into the html, while test=True is for the "Hello world !!" to show if test=True
 
 @app.route("/display")
-# this would be from 127.0.0.1:5000/2 instead of just the "/"
-def secondpage():
+def disaplay():
     return render_template("display.html")
 
-@app.route("/home")
-def thirdpage():
-    return render_template("index.html") 
+@app.route("/library")
+def library():
+    return render_template("library.html") 
 
-@app.route("/get_json")
+@app.route("/get_json", methods=["POST"])
 def get_json():
-    # my_file = request.files["adasd"]
-    # my_file.save("temp.png")
-
-    # notes = main("temp.png")
-
-    # saving data to user
-    # notes = main("image") # json data
-    # if current_user.is_authenticated:
-    #     text_data = json.dumps(notes)
-    #     music_obj = SavedMusic(user_id=current_user.id, data=text_data)
-    #     db.session.add(music_obj)
-    #     db.session.commit()
-
-    image = "image_recognition\\ir_tests\\blues.jpg"
+    image = request.files["image"]
 
     try:
         notes = main(image)
     except:
-        print ("Unable to detect sheet music")
+        try:
+            notes = chord_reader(image)
+        except:
+            return {
+                "error": "Unable to read"
+            }
+
+    # saving data to user
+    if current_user.is_authenticated:
+        text_data = json.dumps(notes)
+        music_obj = SavedMusic(user_id=current_user.id, data=text_data)
+        db.session.add(music_obj)
+        db.session.commit()
 
     return {
-        "notes": main(image)
+        "notes": notes
     }
 
 @app.route("/register", methods=["GET", "POST"])

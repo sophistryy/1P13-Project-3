@@ -85,7 +85,7 @@ def line_detector(image):
 	kernel_size = 5
 	# blur_gray = cv2.GaussianBlur(gray,(kernel_size, kernel_size),0)
 	th3 = cv2.adaptiveThreshold(gray,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\
-        cv2.THRESH_BINARY,11,2)
+        cv2.THRESH_BINARY,21,3)
 	low_threshold = 50
 	high_threshold = 150
 	edges = cv2.Canny(th3, low_threshold, high_threshold)
@@ -93,7 +93,7 @@ def line_detector(image):
 	rho = 1  # distance resolution in pixels of the Hough grid
 	theta = np.pi / 180  # angular resolution in radians of the Hough grid
 	threshold = 15  # minimum number of votes (intersections in Hough grid cell)
-	min_line_length = 310  # minimum number of pixels making up a line
+	min_line_length = 300  # minimum number of pixels making up a line
 	max_line_gap = 20 # maximum gap in pixels between connectable line segments
 	line_image = np.copy(image)  # creating a blank to draw lines on
 
@@ -158,7 +158,7 @@ def line_detector(image):
 
 	for group in staff:
 		for line in group:
-			cv2.line(line_image,(line[0], line[1]),(line[2], line[3]),(255,0,0),1)
+			cv2.line(edges,(line[0], line[1]),(line[2], line[3]),(255,0,0),1)
 
 	# plt.imshow(line_image)
 	# plt.show()

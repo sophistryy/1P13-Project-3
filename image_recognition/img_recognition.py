@@ -3,9 +3,9 @@ from matplotlib import pyplot as plt
 import numpy as np
 import math
 from PIL import Image
-from pre_processing import resize, blob_detector, line_detector
+from image_recognition.pre_processing import resize, blob_detector, line_detector
 
-sheet = "image_recognition\\ir_tests\\wave.png"
+sheet = "image_recognition\\ir_tests\\blues.jpg"
 
 def main(image):
 	img = resize(image)
@@ -96,8 +96,8 @@ def main(image):
 				cv2.putText(sheet, str(note[-1][i]), (x + inc, y + h), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 1, cv2.LINE_AA)
 				h += 12
 
-	plt.imshow(sheet)
-	plt.show()
+	# plt.imshow(sheet)
+	# plt.show()
 
 	# reading note_chord and sorting notes only into chords for each line
 	note_letters = []
