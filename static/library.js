@@ -12,6 +12,7 @@ function libary_list(songs) {
     // Loop through the songs array and create a button for each song
     for (let i = 0; i < songs.length; i++) {
         const song = songs[i];
+        let x = 30;
 
         // Create a new button
         const newButton = document.createElement("button");
@@ -26,7 +27,36 @@ function libary_list(songs) {
 
         // Append the new button to the container
         container.appendChild(newButton);
+
     }
 }
 
 libary_list(song_list)
+
+const upload = async() => {
+    let input = document.querySelector('#imageInput');
+
+    let data = new FormData()
+    data.append('image', input.files[0])
+    // data.append('user', 'hubot')
+
+    try {
+        const response = await fetch('/get_json', {
+            method: "POST",
+            body: data
+        });
+
+        const responseText = await response.text();
+        console.log('Response', responseText);
+    } catch  (error) {
+        console.error('Error:', error)
+    }
+};
+
+//     fetch('/get_json', {
+//         method: 'POST',
+//         body: data
+//     })
+// }
+
+document.querySelector("#uploadButton").addEventListener('click',upload)

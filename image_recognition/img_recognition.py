@@ -5,7 +5,7 @@ import math
 from PIL import Image
 from image_recognition.pre_processing import resize, blob_detector, line_detector
 
-sheet = "image_recognition\\ir_tests\\HC.png"
+sheet = "image_recognition\\ir_tests\\blues.jpg"
 
 def main(image):
 	img = resize(image)
@@ -84,17 +84,17 @@ def main(image):
 					else:
 						note.append([notes[note_index + 1], notes[note_index]])
 				
-	# 			text = str(note[0]) + ", " + str(prev_note[0])
+				text = str(note[0]) + ", " + str(prev_note[0])
 		
-	# for line in note_groupings:
-	# 	for note in line:
-	# 		x = note[0]
-	# 		y = note[1]
-	# 		inc = 15
-	# 		h = 0
-	# 		for i in range(len(note[-1])):
-	# 			cv2.putText(sheet, str(note[-1][i]), (x + inc, y + h), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 1, cv2.LINE_AA)
-	# 			h += 12
+	for line in note_groupings:
+		for note in line:
+			x = note[0]
+			y = note[1]
+			inc = 15
+			h = 0
+			for i in range(len(note[-1])):
+				cv2.putText(sheet, str(note[-1][i]), (x + inc, y + h), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 1, cv2.LINE_AA)
+				h += 12
 
 	# plt.imshow(sheet)
 	# plt.show()
