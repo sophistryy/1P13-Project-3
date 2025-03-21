@@ -1,4 +1,48 @@
-DisplayTextbox{
-    border: none;
-    outline: none; /* Optional: Removes the focus border */
+a {
+
+    font-size: 70px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+}
+
+.title {
+
+    font-size: 150px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.text-container {
+
+    font-size: 4px;
+    flex-direction: column;
+
+}
+
+#speedUpBtn, #playBtn, #slowDownBtn {
+
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    padding: 0;
+    margin: 5px;
+
+}
+
+.button-container {
+
+    font-size: 40px;
+    flex-direction: column;
+    display: flex;
+    align-items: left;
+    justify-content: left;
+
 }
