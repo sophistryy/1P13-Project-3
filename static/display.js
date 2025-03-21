@@ -12,7 +12,7 @@ const resetBtn = document.getElementById("resetBtn");
 
 const initialDelay = 2000;
 let delay = initialDelay;
-tempoTextbox.innerText = delay;
+tempoTextbox.innerText = delay/1000;
 let index = 0;
 let timeoutId = null; 
 let isPaused = false;
@@ -31,35 +31,43 @@ function updateTextbox() {
     }
     else{
         playBtn.style.display = "block";
-        slowDownBtn.style.display = "block";
+        slowDownBtn.disabled = false;
+        speedUpBtn.disabled = false;
         pauseBtn.style.display = "none"; 
     }
 }
 function increaseDelay() {
+    // if(delay>1000){
+    //     speedUpBtn.disabled= false;
+    // }
     delay += 1000; 
-    tempoTextbox.innerText = delay;
+    tempoTextbox.innerText = delay/1000;
 }
 function decreaseDelay() {
     if (delay > 1000) {
         delay -= 1000;
     }
-    else{
-        speedUpBtn.disabeled = true;
-    }
-    tempoTextbox.innerText = delay;
+    // else{
+    //     speedUpBtn.disabled = true;
+    // }
+    tempoTextbox.innerText = delay/1000;
 }
 function pauseLoop() {
     clearTimeout(timeoutId); 
     isPaused = true;
     pauseBtn.style.display = "none"; 
     continueBtn.style.display = "block"; 
-    resetBtn.style.display = "block"; 
+    resetBtn.style.display = "block";
+    slowDownBtn.disabled= false;
+    speedUpBtn.disabled = false; 
 }
 function continueLoop() {
     isPaused = false;
     continueBtn.style.display = "none"; 
     resetBtn.style.display = "none"; 
     pauseBtn.style.display = "block"; 
+    slowDownBtn.disabled= true;
+    speedUpBtn.disabled = true; 
     updateTextbox(); 
 }
 function resetPage(){
@@ -70,10 +78,10 @@ function startLoop() {
     textbox.innerText = "";  
     aftertextbox.innerText = ""; 
     playBtn.style.display = "none";
-    slowDownBtn.style.display = "none";
-    speedUpBtn.style.display = "none";
+    slowDownBtn.disabled= true;
+    speedUpBtn.disabled = true;
     pauseBtn.style.display = "block";   
-    tempoTextbox.innerText = delay;
+    tempoTextbox.innerText = delay/1000;
     clearTimeout(timeoutId);
     isPaused = false;
     updateTextbox();
