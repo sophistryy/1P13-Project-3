@@ -29,18 +29,15 @@ migrate.init_app(app, db)
 bcrypt.init_app(app)
 
 @app.route("/")
-# "/" = home page; runs main at home page (in the broswer url, it's what comes after it)
-# eg. 127.0.0.1:5000/ (this is main)
-
 def base():
-    a = [1, 3, "h", 4] # printing out an example list
-    
-    return render_template("base.html", a=a, test=True)
-    # converts jinja page to html, passing variable into jinja (jinja just contains the python code within html
-    # a=a is passing the variable into the html, while test=True is for the "Hello world !!" to show if test=True
+    if current_user.is_authenticated:
+        return render_template("library.html")
+
+    return render_template("index.html")
 
 @app.route("/display")
 def disaplay():
+
     return render_template("display.html")
 
 @app.route("/library")
