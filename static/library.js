@@ -27,7 +27,6 @@ function libary_list(songs) {
 
         // Append the new button to the container
         container.appendChild(newButton);
-
     }
 }
 
@@ -38,7 +37,6 @@ const upload = async() => {
 
     let data = new FormData()
     data.append('image', input.files[0])
-    // data.append('user', 'hubot')
 
     try {
         const response = await fetch('/get_json', {
@@ -52,11 +50,5 @@ const upload = async() => {
         console.error('Error:', error)
     }
 };
-
-//     fetch('/get_json', {
-//         method: 'POST',
-//         body: data
-//     })
-// }
 
 document.querySelector("#uploadButton").addEventListener('click',upload)
