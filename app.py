@@ -31,18 +31,37 @@ bcrypt.init_app(app)
 @app.route("/")
 def base():
     if current_user.is_authenticated:
-        return render_template("library.html")
+        return redirect("/library")
 
     return render_template("index.html")
 
-@app.route("/display")
-def disaplay():
+@app.route("/display/<int:song_id>")
+def display(song_id):
+    song = SavedMusic.query.filter_by(id=song_id).first()
 
+    if song is None:
+        return redirect("/")
+    
     return render_template("display.html")
 
 @app.route("/library")
 def library():
-    return render_template("library.html") 
+    songs = SavedMusic.query.filter_by(user_id=current_user.id).all()
+    parsed_songs = {}
+
+    for song in songs:
+        parsed_songs[song.id] = json.loads(song.data)
+
+    return render_template("library.html", songs=parsed_songs) 
+
+@app.route("/get_song/<int:song_id>")
+def get_song(song_id):
+    song = SavedMusic.query.filter_by(id=song_id).first()
+
+    if song is None:
+        return {}
+    
+    return song.data
 
 @app.route("/get_json", methods=["POST"])
 def get_json():

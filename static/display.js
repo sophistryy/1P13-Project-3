@@ -1,4 +1,4 @@
-const notes_list = ["A", "B", "C", "D", "E"];
+let notes_list = [];
 // Accessing all elements that must be used
 const textbox = document.getElementById("DisplayTextbox");
 const beforetextbox = document.getElementById("BeforeTextbox");
@@ -8,6 +8,14 @@ const playBtn = document.getElementById("playBtn");
 const pauseBtn = document.getElementById("pauseBtn");
 const continueBtn = document.getElementById("continueBtn");
 const resetBtn = document.getElementById("resetBtn");
+
+(async () => {
+    const url = location.href.split("/");
+    const response = await fetch("/get_song/" + url[url.length - 1]);
+    const data = await response.json();
+    console.log(data);
+    notes_list = data
+})();
 
 
 const initialDelay = 2000;

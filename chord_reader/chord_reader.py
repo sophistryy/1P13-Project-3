@@ -1,7 +1,6 @@
 import cv2 as cv
 from PIL import Image
 import pytesseract  
-import time
 import csv
    
 img = "chord_reader\\HC_Chords.png"
