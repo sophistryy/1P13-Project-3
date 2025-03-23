@@ -42,6 +42,9 @@ function updateTextbox() {
     }
 }
 function increaseDelay() {
+    // if(delay>1000){
+    //     speedUpBtn.disabled= false;
+    // }
     delay += 1000; 
     tempoTextbox.innerText = delay/1000;
 }
@@ -50,6 +53,9 @@ function decreaseDelay() {
     if (delay > 1000) {
         delay -= 1000;
     }
+    // else{
+    //     speedUpBtn.disabled = true;
+    // }
     tempoTextbox.innerText = delay/1000;
 }
 function pauseLoop() {
