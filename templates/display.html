@@ -10,17 +10,15 @@
 
 <body>
     <h2 class="title">Song #1</h2>
-    <div class="text-container"></div>
-        <div id="DisplayTextbox"> </div>
-        <div id="AfterTextbox"></div>
-    <div class="leftside">
-        <div id="tempoTextbox"> </div>   
-        <button id="speedUpBtn" onclick="decreaseDelay()">+</button>
-        <button id="playBtn" onclick="startLoop()">></button>
-        <button id="slowDownBtn" onclick="increaseDelay()">-</button>
-        <button id="pauseBtn" style="display: none" onclick="pauseLoop()">||</button>
-        <button id="continueBtn" style="display:none" onclick="continueLoop()">Continue</button>
-        <button id="resetBtn" style="display:none" onclick="resetPage()">Reset</button>
+    <div id="AfterTextbox"></div>
+    <div id="DisplayTextbox"></div>
+    <button id="speedUpBtn" onclick="decreaseDelay()">+</button>
+    <div id="tempoTextbox"></div> 
+    <button id="slowDownBtn" onclick="increaseDelay()">-</button>
+    <button id="pauseBtn" style="display: none" onclick="pauseLoop()">||</button>
+    <button id="playBtn" onclick="startLoop()">></button>
+    <button id="continueBtn" style="display:none" onclick="continueLoop()">Continue</button>
+    <button id="resetBtn" style="display:none" onclick="resetPage()">Reset</button>
     <a href="/3">Exit</a>
     <script src="../static/display.js"></script>
 

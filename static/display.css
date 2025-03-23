@@ -17,32 +17,63 @@ a {
 
 }
 
-.text-container {
+#speedUpBtn, #slowDownBtn, #pauseBtn, #playBtn {
 
-    font-size: 4px;
-    flex-direction: column;
-
-}
-
-#speedUpBtn, #playBtn, #slowDownBtn {
-
-    width: 50px;
-    height: 50px;
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center; 
+    width: 200px;
+    height: 200px;
+    font-size: 50px;
     padding: 0;
     margin: 5px;
 
 }
 
-.button-container {
+#tempoTextbox {
 
-    font-size: 40px;
-    flex-direction: column;
-    display: flex;
-    align-items: left;
-    justify-content: left;
+    position: absolute;
+    font-size: 250px;
+    left: 50px;
+    top: 41%;
+
+}
+
+#slowDownBtn {
+
+    position: absolute;
+    left: 5px;
+    top: 20%;
+
+}
+
+#speedUpBtn {
+
+    position: absolute;
+    left: 5px;
+    top: 70%;
+
+}
+
+#pauseBtn, #playBtn {
+
+    position: absolute;
+    bottom: 5px;
+    left: 44%;
+
+}
+
+#DisplayTextbox {
+
+    position: absolute;
+    font-size: 650px;
+    margin-left: 43%;
+    margin-top: -12%;
+
+}
+
+#AfterTextbox {
+
+    position: absolute;
+    font-size: 250px;
+    margin-left: 20%;
+    margin-top: 0%;
 
 }
