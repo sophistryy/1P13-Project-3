@@ -4,26 +4,26 @@
 
 {% block head %}
     <link rel="stylesheet" href="../static/display.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 {% endblock %}
 
 {% block content %}
     <h2 class="title">Song #1</h2>
-    <div class="text-container"></div>
-        <div id="DisplayTextbox"> </div>
-        <div id="AfterTextbox"></div>
-    <div class="leftside">
-        <div id="tempoTextbox"> </div> 
 
-    <a href="/library">Home</a>
+    <div id="DisplayTextbox"> </div>
+    <div id="AfterTextbox"></div>
+    <div id="tempoTextbox"> </div>   
+    <button class="fa fa-forward-fast" id="speedUpBtn" onclick="decreaseDelay()"></button>
+    <button class="fa fa-play" id="playBtn" onclick="startLoop()"></button>
+    <button class="fa fa-backward-fast" id="slowDownBtn" onclick="increaseDelay()"></button>
+    <button class="fa fa-pause" id="pauseBtn" style="display: none" onclick="pauseLoop()"></button>
+    <button class="fa fa-play" id="continueBtn" style="display:none" onclick="continueLoop()"></button>
+    <button class="fa fa-rotate-right" id="resetBtn" style="display:none" onclick="resetPage()"></button>
 
-    <button id="playBtn" onclick="startLoop()">Play</button>
-    <button id="slowDownBtn" onclick="increaseDelay()">+</button>
-    <button id="speedUpBtn" onclick="decreaseDelay()">-</button>
-    <button id="pauseBtn" style="display: none" onclick="pauseLoop()">Pause</button>
-    <button id="continueBtn" style="display:none" onclick="continueLoop()">Continue</button>
-    <button id="resetBtn" style="display:none" onclick="resetPage()">Reset</button>
-    <button id="backBtn" disabled=true onclick="rewind()">Back</button> 
-    <button id="forwardBtn" disabled=true onclick="forward()">Forward</button> 
-    
+    <button class="fa fa-backward" id="backBtn" disabled=true onclick="rewind()"></button> 
+    <button class="fa fa-forward" id="forwardBtn" disabled=true onclick="forward()"></button> 
+
+    <a class="fa fa-house" href="/library"></a>
+
     <script src="../static/display.js"></script>
 {% endblock %}
