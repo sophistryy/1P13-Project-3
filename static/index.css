@@ -1,4 +1,37 @@
 #login-container {
-    font-size: 5em;
-    
+    font-size: 8em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#login-container a {
+    margin: 30px;
+    text-decoration: none;
+    color: black;
+    background-color: rgb(208, 208, 208);
+    padding: 30px 60px;
+    border-radius: 10px;
+}
+
+#username-container form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#username-container label {
+    font-size: 3em;
+}
+#username-container input {
+    font-size: 3em;
+    margin: 40px;
+}
+
+#login {
+    font-size: 2em;
 }

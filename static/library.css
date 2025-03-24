@@ -1,0 +1,63 @@
+/* div {
+    border: 1px solid black;
+} */
+html, body {
+    font-family: "Manrope", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200px;
+    font-style: normal;
+}
+
+body {
+    padding: 5px 10px;
+}
+.header-container {
+    font-size: 2em;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.header-container span {
+    font-size: 3em;
+}
+
+.main-container {
+    display: flex;
+}
+
+#songs-container {
+    font-size: 5em;
+    width: 80%;
+    height: 80vh;
+    overflow: auto;
+}
+
+.song {
+    padding: 15px 30px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: rgb(216, 216, 216);
+}
+
+.song a {
+    text-decoration: none;
+    color: black;
+}
+
+#upload-container {
+    font-size: 3em;
+    display: flex;
+    width: 30%;
+    align-items: center;
+    justify-content: center;
+}
+
+#image-input {
+    display: none;
+}
+
+#upload-button {
+    font-size: 3em;
+    cursor: pointer;
+}

@@ -9,6 +9,7 @@
 
 {% block content %}
     <h2 class="title">Song #1</h2>
+
     <div id="DisplayTextbox"> </div>
     <div id="AfterTextbox"></div>
     <div id="tempoTextbox"> </div>   
@@ -18,9 +19,11 @@
     <button class="fa fa-pause" id="pauseBtn" style="display: none" onclick="pauseLoop()"></button>
     <button class="fa fa-play" id="continueBtn" style="display:none" onclick="continueLoop()"></button>
     <button class="fa fa-rotate-right" id="resetBtn" style="display:none" onclick="resetPage()"></button>
-    <a class="fa fa-house" href="/library"></a>
+
     <button class="fa fa-backward" id="backBtn" disabled=true onclick="rewind()"></button> 
     <button class="fa fa-forward" id="forwardBtn" disabled=true onclick="forward()"></button> 
+
+    <a class="fa fa-house" href="/library"></a>
+
     <script src="../static/display.js"></script>
 {% endblock %}
-

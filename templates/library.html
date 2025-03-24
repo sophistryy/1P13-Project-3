@@ -3,21 +3,32 @@
 {% block title %}Song Library{% endblock %}
 
 {% block head %}
-<link rel="stylesheet" href="../static/library.css">
+    <link rel="stylesheet" href="../static/library.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Yomogi&display=swap');
+    </style>
 {% endblock %}
 
 {% block content %}
-    <!-- Title of the Page -->
-    <h2 class="title">Song Library</h2>
-
-    <div id="logout-container"><a href="/logout">Logout</a></div>
-
-    <!-- Container to hold dynamically created buttons -->
-    <div id="buttonsContainer"></div>
-
-    <label>Select file to upload</label>
-    <input type="file" id="imageInput">
-    <button type="submit" id="uploadButton">Upload Image</button>
+    <div class="header-container">
+        <a href="/logout">Logout</a>
+        <span>Song Library</span>
+        <a>{{ current_user.username }}</a>
+    </div>
+    <div class="main-container">
+        <div id="songs-container">
+            {% for song in songs %}
+                <div class="song">
+                    <a href="/display/{{ song }}">Song #{{ loop.index }}</a>
+                </div>
+            {% endfor %}
+        </div>
+        <div id="upload-container">
+            <input name="image-input" type="file" id="image-input">
+            <label for="image-input" class="fa fa-arrow-up-from-bracket" type="submit" id="upload-button"></label>
+        </div>
+    </div>
 
     <script src="../static/library.js"></script>
 {% endblock %}
