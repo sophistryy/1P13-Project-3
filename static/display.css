@@ -63,8 +63,8 @@ a {
 #DisplayTextbox {
 
     position: absolute;
-    font-size: 650px;
-    margin-left: 43%;
+    font-size: 25em;
+    margin-left: 100px;
     margin-top: -12%;
 
 }
@@ -72,7 +72,7 @@ a {
 #AfterTextbox {
 
     position: absolute;
-    font-size: 250px;
+    font-size: 9em;
     margin-left: 20%;
     margin-top: 0%;
 
