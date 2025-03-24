@@ -2,7 +2,10 @@ from flask import Flask, redirect, render_template, request
 from flask_login import login_user, current_user, LoginManager, logout_user
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
+
 from image_recognition.img_recognition import main
+from chord_reader.chord_reader import chord_reader
+
 from models import db, User, SavedMusic
 import json
 
@@ -26,44 +29,44 @@ migrate.init_app(app, db)
 bcrypt.init_app(app)
 
 @app.route("/")
-# "/" = home page; runs main at home page (in the broswer url, it's what comes after it)
-# eg. 127.0.0.1:5000/ (this is main)
+def base():
+    if current_user.is_authenticated:
+        return render_template("library.html")
 
-def main_page():
-    a = [1, 3, "h", 4] # printing out an example list
-    
-    return render_template("base.html", a=a, test=True)
-    # converts jinja page to html, passing variable into jinja (jinja just contains the python code within html
-    # a=a is passing the variable into the html, while test=True is for the "Hello world !!" to show if test=True
+    return render_template("index.html")
 
-@app.route("/2")
-# this would be from 127.0.0.1:5000/2 instead of just the "/"
-def secondpage():
+@app.route("/display")
+def disaplay():
+
     return render_template("display.html")
 
-@app.route("/3")
-def thirdpage():
-    return render_template("index.html") 
+@app.route("/library")
+def library():
+    return render_template("library.html") 
 
-@app.route("/get_json")
+@app.route("/get_json", methods=["POST"])
 def get_json():
-    # my_file = request.files["adasd"]
-    # my_file.save("temp.png")
+    image = request.files["image"]
 
-    # notes = main("temp.png")
+    try:
+        notes = main(image)
+    except:
+        try:
+            notes = chord_reader(image)
+        except:
+            return {
+                "error": "Unable to read"
+            }
 
     # saving data to user
-    # notes = main("image") # json data
-    # if current_user.is_authenticated:
-    #     text_data = json.dumps(notes)
-    #     music_obj = SavedMusic(user_id=current_user.id, data=text_data)
-    #     db.session.add(music_obj)
-    #     db.session.commit()
-
-    image = "image_recognition\\ir_tests\\blues.jpg"
+    if current_user.is_authenticated:
+        text_data = json.dumps(notes)
+        music_obj = SavedMusic(user_id=current_user.id, data=text_data)
+        db.session.add(music_obj)
+        db.session.commit()
 
     return {
-        "notes": main(image)
+        "notes": notes
     }
 
 @app.route("/register", methods=["GET", "POST"])

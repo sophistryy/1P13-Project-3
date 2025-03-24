@@ -3,15 +3,12 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Mon-15 Website - Song Library</title>
-        <link rel="stylesheet" href="song_library.css">
+        <title>{% block title %}Mon-15 Website{% endblock %}</title>
+        {% block head %}
+        {% endblock %}
+
     </head>
     <body>
-        {% if current_user.is_authenticated %}
-            Hello, {{ current_user.username }}. <a href="/logout">Logout here</a>.
-        {% else %}
-            You are not logged in. Register <a href="/register">here</a> or login <a href="/login">here</a>.
-        {% endif %}
         {% block content %}
         {% endblock %}
     </body>

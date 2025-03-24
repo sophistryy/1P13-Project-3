@@ -1,5 +1,12 @@
 {% extends "base.html" %}
 
+{% block head %}
+    <link rel="stylesheet" href="../static/index.css">
+{% endblock %}
+
 {% block content %}
-    <!-- Website content here -->
+    <div id="login-container">
+        <a href="/register">Register</a>
+        <a href="/login">Login</a>
+    </div>
 {% endblock %}

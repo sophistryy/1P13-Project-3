@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Song Library{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="../static/library.css">
+{% endblock %}
+
+{% block content %}
+    <!-- Title of the Page -->
+    <h2 class="title">Song Library</h2>
+
+    <div id="logout-container"><a href="/logout">Logout</a></div>
+
+    <!-- Container to hold dynamically created buttons -->
+    <div id="buttonsContainer"></div>
+
+    <label>Select file to upload</label>
+    <input type="file" id="imageInput">
+    <button type="submit" id="uploadButton">Upload Image</button>
+
+    <script src="../static/library.js"></script>
+{% endblock %}
