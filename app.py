@@ -69,9 +69,11 @@ def get_json():
 
     try:
         notes = main(image)
+        print("main")
     except:
         try:
             notes = chord_reader(image)
+            print("chord reader")
         except:
             return {
                 "error": "Unable to read"
