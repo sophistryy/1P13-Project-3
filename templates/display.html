@@ -1,29 +1,47 @@
 {% extends "base.html" %}
 
-{% block title %}Song Title{% endblock %}
+{% block title %}Song #{{ index }}{% endblock %}
 
 {% block head %}
-    <link rel="stylesheet" href="../static/display.css">
+    <link rel="stylesheet" href="../static/display1.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Yomogi&display=swap');
+    </style>
 {% endblock %}
 
 {% block content %}
-    <h2 class="title">Song #1</h2>
+    <div class="song-container">
+        <div class="title-container">
+            Song #{{ index }}
+        </div>
+        <div class="speed-container">
+            <span class="fa fa-plus" id="speedUpBtn" onclick="increaseDelay()"></span>
+            <div id="tempoTextbox"> </div>
+            <span class="fa fa-minus" id="slowDownBtn" onclick="decreaseDelay()"></span>
+        </div>
+        <div class="note-container">
+            <div id="DisplayTextbox"></div>
+            <div id="AfterTextbox"></div>
+        </div>
+        <div class="right-container">
+            <a class="fa fa-home" id="home-button" href="/library"></a>
+            <a class="fa fa-list" id="list-button" href="/note_list/{{ index }}"></a>
+        </div>
+        <div class="play-container">
+            <span class="fa fa-volume-high" id="volume-button"></span>
 
-    <div id="DisplayTextbox"> </div>
-    <div id="AfterTextbox"></div>
-    <div id="tempoTextbox"> </div>   
-    <button class="fa fa-forward-fast" id="speedUpBtn" onclick="decreaseDelay()"></button>
-    <button class="fa fa-play" id="playBtn" onclick="startLoop()"></button>
-    <button class="fa fa-backward-fast" id="slowDownBtn" onclick="increaseDelay()"></button>
-    <button class="fa fa-pause" id="pauseBtn" style="display: none" onclick="pauseLoop()"></button>
-    <button class="fa fa-play" id="continueBtn" style="display:none" onclick="continueLoop()"></button>
-    <button class="fa fa-rotate-right" id="resetBtn" style="display:none" onclick="resetPage()"></button>
+            <span class="fa fa-backward" id="backBtn" disabled=true onclick="rewind()"></span> 
 
-    <button class="fa fa-backward" id="backBtn" disabled=true onclick="rewind()"></button> 
-    <button class="fa fa-forward" id="forwardBtn" disabled=true onclick="forward()"></button> 
+            <span class="fa fa-play" id="playBtn" onclick="startLoop()"></span>
+            <span class="fa fa-pause" id="pauseBtn" style="display: none" onclick="pauseLoop()"></span>
+            <span class="fa fa-play" id="continueBtn" style="display:none" onclick="continueLoop()"></span>
 
-    <a class="fa fa-house" href="/library"></a>
+            <span class="fa fa-forward" id="forwardBtn" disabled=true onclick="forward()"></span>
+
+            <span class="fa fa-rotate-right" id="resetBtn" onclick="resetPage()"></span>
+        </div>
+    </div>
 
     <script src="../static/display.js"></script>
 {% endblock %}

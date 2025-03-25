@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Song #{{ index }} - List{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="../static/note_list.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Yomogi&display=swap');
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div id="back-container"><a class="fa fa-arrow-left" id="back-button" href="/display/{{ index }}"></a></div>
+    <div class="title-container">
+        Song #{{ index }}
+    </div>
+
+    <div class="content-container"></div>
+    {% for chord in song %}
+        <p>
+            {% for note in chord %}
+                {{ note }}
+            {% endfor %}
+       </p>
+    {% endfor %}
+{% endblock %}

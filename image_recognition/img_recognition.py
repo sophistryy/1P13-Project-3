@@ -4,6 +4,8 @@ import numpy as np
 import math
 from PIL import Image
 from image_recognition.pre_processing import resize, blob_detector, line_detector
+# from pre_processing import resize, blob_detector, line_detector
+
 
 sheet = "image_recognition\\ir_tests\\blues.jpg"
 
@@ -101,6 +103,7 @@ def main(image):
 
 	# reading note_chord and sorting notes only into chords for each line
 	note_letters = []
+	
 	for line in note_chords:
 		for chord in line:
 			chord_notes = []
@@ -111,8 +114,13 @@ def main(image):
 						chord.append(n[-1][i])
 				chord_notes.append(chord)
 		note_letters.append(chord_notes)
+
+	chords = []
+	for line in note_letters:
+		for chord in line:
+			chords.append(chord)
 	
-	return note_letters
+	return chords
 
 if __name__ == "__main__":
 	main(sheet)

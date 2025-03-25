@@ -3,12 +3,12 @@ from PIL import Image
 import pytesseract  
 import csv
    
-img = "chord_reader\\HC_Chords.png"
+imgname = "chord_reader\\HC_Chords.png"
 
 def chord_reader(image):
     pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
-    img = cv.imread(image)
+    img = cv.imread("chord_reader\\temp.png")
 
     img_resized = cv.resize(img, (0, 0), fx=3.5, fy=3.5)
 
@@ -29,15 +29,12 @@ def chord_reader(image):
 
         for line in reader:
             note_list.append(line[0])
-    # end
 
     for word in text.split():
         if word in note_list:
-            matched_chords.append(word)
-
-    # print(matched_chords)
+            matched_chords.append([word])
 
     return matched_chords
 
 if __name__ == "__main__":
-	chord_reader(img)
+	chord_reader(imgname)

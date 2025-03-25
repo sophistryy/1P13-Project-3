@@ -42,7 +42,17 @@ def display(song_id):
     if song is None:
         return redirect("/")
     
-    return render_template("display.html")
+    return render_template("display.html", index=song_id)
+
+@app.route("/note_list/<int:song_id>")
+def note_list(song_id):
+    song = SavedMusic.query.filter_by(id=song_id).first()
+    parsed_content = json.loads(song.data)
+
+    if song is None:
+        return redirect("/")
+    
+    return render_template("note_list.html", song=parsed_content, index=song_id)
 
 @app.route("/library")
 def library():
@@ -65,16 +75,15 @@ def get_song(song_id):
 
 @app.route("/get_json", methods=["POST"])
 def get_json():
-    image = request.files["image"]
+    image = request.files.get("image")
+    image.save("chord_reader\\temp.png")
 
     try:
         notes = main(image)
-        print("main")
     except:
         try:
-            notes = chord_reader(image)
-            print("chord reader")
-        except:
+            notes = chord_reader("chord_reader\\temp.png")
+        except Exception as e:
             return {
                 "error": "Unable to read"
             }
