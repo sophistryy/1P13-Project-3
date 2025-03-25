@@ -49,7 +49,7 @@ function updateTextbox() {
 	// textbox.innerHTML = boxHTML;
 	
 	if (isVolumeOn) {
-		msg.text = notes_list[index].toLowerCase();
+		msg.text = notes_list[index].toString().toLowerCase();
 		window.speechSynthesis.speak(msg);
 	}
 
