@@ -1,6 +1,7 @@
 /* div {
     border: 1px solid black;
 } */
+
 html, body {
     font-family: "Manrope", sans-serif;
     font-optical-sizing: auto;
@@ -8,11 +9,14 @@ html, body {
     font-style: normal;
     overflow: hidden;
     margin: 0;
+    background-color: #fcfc76;
+    color: #00008b;
 }
 
 body {
     padding: 5px 10px;
 }
+
 .header-container {
     height: calc(19vh - 20px);
     font-size: 2em;
@@ -26,6 +30,10 @@ body {
     font-weight: bold;
 }
 
+.header-container a {
+    color: #00008b;
+}
+
 .main-container {
     display: flex;
 }
@@ -35,33 +43,79 @@ body {
     width: 80%;
     height: 79vh;
     overflow: auto;
+    font-weight: bold;
 }
 
 .song {
     padding: 15px 30px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     border-radius: 10px;
-    background-color: rgb(216, 216, 216);
+    background-color: #00008B;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .song a {
     text-decoration: none;
-    color: black;
+    color: #fcfc76;
 }
 
-#upload-container {
-    font-size: 3em;
+.trash-button, .edit-button {
+    color: #fcfc76;
+    margin-left: 20px;
+}
+
+.upload-container {
     display: flex;
     width: 30%;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+#color-button {
+    font-size: 5em;
+    margin: 80px;
 }
 
 #image-input {
     display: none;
 }
 
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#upload {
+    font-size: 4em;
+    margin: 30px;
+}
+
 #upload-button {
-    font-size: 3em;
+    font-size: 10em;
     cursor: pointer;
+}
+
+.error-container {
+    font-size: 2em;
+    margin: 30px;
+    color: red;
+    font-weight: bold;
+}
+
+.fa {
+    cursor: pointer;
+}
+
+.song div {
+    max-width: 60%;
+}
+
+.change-name-input {
+    font-size: 0.8em;
+    width: 100%;
 }

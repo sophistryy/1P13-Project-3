@@ -16,7 +16,7 @@ const volumeOn = document.getElementById("volume-button");
 	const url = location.href.split("/");
 	const response = await fetch("/get_song/" + url[url.length - 1]);
 	const data = await response.json();
-	notes_list = data;
+	notes_list = data["notes"];
 })();
 
 // let delay = 2000;
@@ -100,13 +100,17 @@ function pauseLoop() {
 	// Clears current loop. Shows option to continue or reset. Enables tempo change and rewind/forward. 
 	clearTimeout(timeoutId); 
 	isPaused = true;
+
 	pauseBtn.style.display = "none"; 
 	continueBtn.style.display = "block"; 
 	resetBtn.style.display = "block";
-	slowDownBtn.disabled= false;
+
+	slowDownBtn.style.color = 
+
+	slowDownBtn.disabled = false;
 	speedUpBtn.disabled = false; 
-	backBtn.disabled = false;
-	forwardBtn.disabled = false;
+	// backBtn.disabled = false;
+	// forwardBtn.disabled = false;
 }
 
 function continueLoop() {
@@ -115,10 +119,10 @@ function continueLoop() {
 	continueBtn.style.display = "none"; 
 	// resetBtn.style.display = "none"; 
 	pauseBtn.style.display = "block"; 
-	slowDownBtn.disabled= true;
+	slowDownBtn.disabled = true;
 	speedUpBtn.disabled = true; 
-	backBtn.disabled = true;
-	forwardBtn.disabled = true;
+	// backBtn.disabled = true;
+	// forwardBtn.disabled = true;
 	index -= 1;
 	updateTextbox(); 
 }
@@ -129,7 +133,7 @@ function resetPage() {
 
 function rewind() {
 	// Rewinding is enabled as long as song is not at begenning.
-	if (isPaused && index > 1) {
+	if (index > 1) {
 		aftertextbox.innerText = notes_list[index - 1]
 		textbox.innerText = notes_list[index - 2];
 		index -= 1;
@@ -143,7 +147,7 @@ function rewind() {
 
 function forward() {
 	// Can only increase index if index is not already at max index
-	if (isPaused && index < notes_list.length) {
+	if (index < notes_list.length) {
 		textbox.innerText = notes_list[index];
 		if (index === notes_list.length-1){
 			aftertextbox.innerText = "END";

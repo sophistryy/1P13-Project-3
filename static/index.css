@@ -32,7 +32,9 @@ html, body {
 
 #username-container label {
     font-size: 3em;
+    font-weight: bold;
 }
+
 #username-container input {
     font-size: 3em;
     margin: 40px;
@@ -40,4 +42,15 @@ html, body {
 
 #login {
     font-size: 2em;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#submit-button, #back-button button {
+    font-size: 3em;
+    padding: 2px 10px;
 }

@@ -14,6 +14,8 @@ html, body {
     width: 100%;
     justify-content: center;
     height: 100%;
+    background-color: #fcfc76;
+    color: #00008b;
 }
 
 .song-container div {
@@ -57,12 +59,13 @@ html, body {
     font-size: 9em;
     display: flex;
     flex-direction: column;
+    color: #00008b;
 }
 
 #AfterTextbox {
     font-size: 5em;
     margin: 10px 20px;
-    color: gray;
+    color: #4844cf;
 }
 
 .play-container {
@@ -81,7 +84,8 @@ html, body {
 
 .right-container a{
     text-decoration: none;
-    color: black;
+    /* color: black; */
+    color: #00008b;
 }
 
 #resetBtn, #volume-button {

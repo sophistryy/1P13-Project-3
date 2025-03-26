@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Song #{{ index }}{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 {% block head %}
     <link rel="stylesheet" href="../static/display1.css">
@@ -13,12 +13,13 @@
 {% block content %}
     <div class="song-container">
         <div class="title-container">
-            Song #{{ index }}
+            {{ title }}
         </div>
         <div class="speed-container">
-            <span class="fa fa-plus" id="speedUpBtn" onclick="increaseDelay()"></span>
+            <span>BPM</span>
+            <span class="fa fa-caret-up" id="speedUpBtn" onclick="increaseDelay()"></span>
             <div id="tempoTextbox"> </div>
-            <span class="fa fa-minus" id="slowDownBtn" onclick="decreaseDelay()"></span>
+            <span class="fa fa-caret-down" id="slowDownBtn" onclick="decreaseDelay()"></span>
         </div>
         <div class="note-container">
             <div id="DisplayTextbox"></div>
@@ -26,18 +27,18 @@
         </div>
         <div class="right-container">
             <a class="fa fa-home" id="home-button" href="/library"></a>
-            <a class="fa fa-list" id="list-button" href="/note_list/{{ index }}"></a>
+            <a class="fa fa-file" id="list-button" href="/note_list/{{ index }}"></a>
         </div>
         <div class="play-container">
             <span class="fa fa-volume-high" id="volume-button"></span>
 
-            <span class="fa fa-backward" id="backBtn" disabled=true onclick="rewind()"></span> 
+            <span class="fa fa-backward" id="backBtn" onclick="rewind()"></span> 
 
             <span class="fa fa-play" id="playBtn" onclick="startLoop()"></span>
             <span class="fa fa-pause" id="pauseBtn" style="display: none" onclick="pauseLoop()"></span>
             <span class="fa fa-play" id="continueBtn" style="display:none" onclick="continueLoop()"></span>
 
-            <span class="fa fa-forward" id="forwardBtn" disabled=true onclick="forward()"></span>
+            <span class="fa fa-forward" id="forwardBtn" onclick="forward()"></span>
 
             <span class="fa fa-rotate-right" id="resetBtn" onclick="resetPage()"></span>
         </div>

@@ -15,8 +15,11 @@
 
             <label for="password">Password</label>
             <input type="password" name="password" placeholder="Password">
-            
-            <input type="submit" value="Register">
+
+            <div class="button-container">
+                <input id="submit-button" type="submit" value="Register">
+                <a id="back-button" href="/"><button type="button">Back</button></a>
+            </div>
             {% if error %}{{ error }}{% endif %}
         </form>
     </div>

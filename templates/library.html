@@ -5,6 +5,7 @@
 {% block head %}
     <link rel="stylesheet" href="../static/library.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <script src="../static/library.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Yomogi&display=swap');
     </style>
@@ -20,15 +21,29 @@
         <div id="songs-container">
             {% for song in songs %}
                 <div class="song">
-                    <a href="/display/{{ song }}">Song #{{ loop.index }}</a>
+                    <div>
+                        <a href="/display/{{ song }}" class="song-name">{{ songs[song]["title"] }}</a>
+                        <input class="change-name-input" style="display: none;" data-id="{{ song }}">
+                    </div>
+                    <div>
+                        <span class="fa fa-pen edit-button" tabindex="0"></span>
+                        <a href="/delete/{{ song }}" class="fa fa-trash trash-button"></a>
+                    </div>
                 </div>
             {% endfor %}
         </div>
-        <div id="upload-container">
+        <div class="upload-container">
+            <span id="upload">upload</span>
             <input name="image-input" type="file" id="image-input">
             <label for="image-input" class="fa fa-arrow-up-from-bracket" type="submit" id="upload-button"></label>
+
+            <!-- <span class="fa fa-paintbrush" id="color-button"></span> -->
+
+            <!-- <div class="error-container">
+                <span class="fa fa-xmark"></span>
+                <span>file can't be read</span>
+            </div> -->
         </div>
     </div>
 
-    <script src="../static/library.js"></script>
 {% endblock %}

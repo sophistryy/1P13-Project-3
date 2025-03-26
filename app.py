@@ -1,5 +1,5 @@
 from flask import Flask, redirect, render_template, request
-from flask_login import login_user, current_user, LoginManager, logout_user
+from flask_login import login_user, current_user, LoginManager, logout_user, login_required
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 
@@ -42,7 +42,7 @@ def display(song_id):
     if song is None:
         return redirect("/")
     
-    return render_template("display.html", index=song_id)
+    return render_template("display.html", index=song_id, title=json.loads(song.data)["title"])
 
 @app.route("/note_list/<int:song_id>")
 def note_list(song_id):
@@ -73,7 +73,25 @@ def get_song(song_id):
     
     return song.data
 
+@app.route("/delete/<int:song_id>")
+def delete_song(song_id):
+    song = SavedMusic.query.filter_by(id=song_id).first()
+    db.session.delete(song)
+    db.session.commit()
+
+    return redirect("/library")
+
+@app.route("/set_name/<int:song_id>", methods=["POST"])
+def set_name(song_id):
+    song = SavedMusic.query.filter_by(id=song_id).first()
+    song_data = json.loads(song.data)
+    song_data["title"] = request.data.decode("utf-8")
+    song.data = json.dumps(song_data)
+    db.session.commit()
+    return {}
+
 @app.route("/get_json", methods=["POST"])
+@login_required
 def get_json():
     image = request.files.get("image")
     image.save("chord_reader\\temp.png")
@@ -88,15 +106,17 @@ def get_json():
                 "error": "Unable to read"
             }
 
-    # saving data to user
-    if current_user.is_authenticated:
-        text_data = json.dumps(notes)
-        music_obj = SavedMusic(user_id=current_user.id, data=text_data)
-        db.session.add(music_obj)
-        db.session.commit()
+    num_songs = len(SavedMusic.query.filter_by(user_id=current_user.id).all())
+    text_data = {
+        "notes": notes,
+        "title": f"Song #{num_songs + 1}"
+    }
+    music_obj = SavedMusic(user_id=current_user.id, data=json.dumps(text_data))
+    db.session.add(music_obj)
+    db.session.commit()
 
     return {
-        "notes": notes
+        "id": music_obj.id
     }
 
 @app.route("/register", methods=["GET", "POST"])

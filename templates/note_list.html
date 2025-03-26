@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Song #{{ index }} - List{% endblock %}
+{% block title %}{{ song["title"] }}{% endblock %}
 
 {% block head %}
     <link rel="stylesheet" href="../static/note_list.css">
@@ -13,11 +13,11 @@
 {% block content %}
     <div id="back-container"><a class="fa fa-arrow-left" id="back-button" href="/display/{{ index }}"></a></div>
     <div class="title-container">
-        Song #{{ index }}
+        {{ song["title"] }}
     </div>
 
     <div class="content-container"></div>
-    {% for chord in song %}
+    {% for chord in song["notes"] %}
         <p>
             {% for note in chord %}
                 {{ note }}
