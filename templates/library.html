@@ -20,9 +20,9 @@
     <div class="main-container">
         <div id="songs-container">
             {% for song in songs %}
-                <div class="song">
+                <div class="song" onclick="location.href='/display/{{song}}'">
                     <div>
-                        <a href="/display/{{ song }}" class="song-name">{{ songs[song]["title"] }}</a>
+                        <a class="song-name">{{ songs[song]["title"] }}</a>
                         <input class="change-name-input" style="display: none;" data-id="{{ song }}">
                     </div>
                     <div>

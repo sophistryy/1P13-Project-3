@@ -44,7 +44,8 @@ window.addEventListener("load", () => {
 	// });
 
 	[...document.getElementsByClassName("edit-button")].forEach(elem => {
-		elem.addEventListener("click", () => {
+		elem.addEventListener("click", event => {
+			event.stopPropagation();
 			const container = elem.parentElement.parentElement.children[0];
 
 			if (container.children[0].style.display === "none") {
